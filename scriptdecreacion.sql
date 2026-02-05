@@ -34,7 +34,7 @@ create table Departamentos(
     idDep INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     depa VARCHAR(50),
     correo VARCHAR(60),
-    tel INT(15),
+    tel VARCHAR(20),
     Coordi_id int,
 
     -- Llave foranea de la tabla docentes
@@ -124,11 +124,11 @@ VALUES
 
 INSERT INTO Departamentos(depa, correo, tel, Coordi_id)
 VALUES
-('Ciberseguridad', 'ciberseguridad@institucion.mx', 5512345678, 1),
-('Inteligencia Artificial y Ciencia de Datos', 'ia.datos@institucion.mx', 5556789123, 2),
-('Tecnologías Biomédicas', 'biomedicas@institucion.mx', 5523456789, 3),
-('Inteligencia Financiera y de Negocios', 'finanzas.inteligentes@institucion.mx', 5567890123, 4),
-('Innovación Digital y Analítica', 'innovacion.digital@institucion.mx', 5534567890, 5);
+('Ciberseguridad', 'ciberseguridad@institucion.mx', '5512345678', 1),
+('Inteligencia Artificial y Ciencia de Datos', 'ia.datos@institucion.mx', '5556789123', 2),
+('Tecnologías Biomédicas', 'biomedicas@institucion.mx', '5523456789', 3),
+('Inteligencia Financiera y de Negocios', 'finanzas.inteligentes@institucion.mx', '5567890123', 4),
+('Innovación Digital y Analítica', 'innovacion.digital@institucion.mx', '5534567890', 5);
 
 INSERT INTO Administrativos(nombre)
 VALUES
@@ -161,14 +161,3 @@ VALUES
 ('Orientación psicopedagógica', 1),
 ('Servicio médico escolar', 2),
 ('Transporte universitario', 5);
-
-
-
-
-
-
-
-
-
-
-
