@@ -34,7 +34,7 @@ create table Departamentos(
     idDep INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     depa VARCHAR(50),
     correo VARCHAR(60),
-    tel INT(10),
+    tel INT(15),
     Coordi_id int,
 
     -- Llave foranea de la tabla docentes
@@ -56,8 +56,8 @@ CREATE TABLE Finanzas (
     Rubro VARCHAR(100) NOT NULL,    
     Egreso DECIMAL(10, 2),     
     Ingreso DECIMAL(10, 2),     
-    cuenta_origen INT(20) NOT NULL,     
-    cuenta_destino INT(20) NOT NULL,     
+    cuenta_origen VARCHAR(50) NOT NULL,     
+    cuenta_destino VARCHAR(50) NOT NULL,     
     Administrador INT NOT NULL,  
         
     -- Asignamos la llave foranea de la tabla administrativos
@@ -70,7 +70,7 @@ CREATE TABLE Finanzas (
 CREATE TABLE Control_escolar(     
     idTramite INT AUTO_INCREMENT PRIMARY KEY,     
     Tramites VARCHAR(100),     
-    Cod_Estudiantes INT,      
+    Cod_Estudiante INT,      
     Id_finanza INT, 
     Id_Admin INT,
 
@@ -108,27 +108,27 @@ CREATE TABLE Servicios_Generales(
 -- Agregamos datos (5 por área)
 INSERT INTO Estudiantes(nombre, carrera, promedio, genero, nacimiento)
 VALUES 
-('Ana Lucía Torres', 'Ciberseguridad', 8.7, 'Femenino', 14/08/2003),
-('Diego Manuel Rivas', 'Ciberseguridad', 9.2, 'Masculino', 27/11/2004),
-('Sofía Valentina Cruz', 'Creatividad Digital', 'Femenino', 8.9, 08/12/2002),
-('Carlos Andrés Méndez', 'Inteligencia Artificial y Ciencia de Datos', 'Masculino', 8.0, 22/09/2004),
-('Mariana Isabel López', 'Ciberseguridad', 'Femenino', 8.5, 12/01/2000);
+('Ana Lucía Torres', 'Ciberseguridad', 8.7, 'Femenino', '2003-08-14'),
+('Diego Manuel Rivas', 'Ciberseguridad', 9.2, 'Masculino', '2004-11-27'),
+('Sofía Valentina Cruz', 'Creatividad Digital', 8.9, 'Femenino', '2002-12-08'),
+('Carlos Andrés Méndez', 'Inteligencia Artificial y Ciencia de Datos', 8.0, 'Masculino', '2004-09-22'),
+('Mariana Isabel López', 'Ciberseguridad', 8.5, 'Femenino', '2000-01-12');
 
 INSERT INTO Docentes(nombre, genero, fecha_nac, nivel_acad, rfc, curp, correo)
 VALUES 
-('Laura Patricia Ramírez', 'Femenino', 12/05/84, 'Maestría', 'RAPL840512MX1', 'RAPL840512MDFMRS07', 'l.ramirez.docente@escuela.mx'),
-('José Antonio Delgado', 'Masculino', 03/12/90, 'Doctorado', 'DEAJ780923HT2', 'DEAJ780923HGRLNS05', 'jose.delgado@instituto.edu'),
-('Mariana Solís Vega', 'Femenino', 10/02/91, 'Doctorado', 'SOVM900204AB3', 'SOVM900204MPLSGR08', 'm.solis.vega@colegio.mx'),
-('Ricardo Alberto Núñez', 'Masculino', 22/07/87, 'Maestría', 'NUAR821117ZX4', 'NUAR821117HCMNRC06', 'r.nunez@universidad.edu'),
-('Karla Daniela Méndez', 'Femenino', 09/12/80, 'Licenciatura', 'MEDK870730QP5', 'MEDK870730MMNDLR09', 'karla.mendez@prepa.mx');
+('Laura Patricia Ramírez', 'Femenino', '1984-05-12', 'Maestría', 'RAPL840512MX1', 'RAPL840512MDFMRS07', 'l.ramirez.docente@escuela.mx'),
+('José Antonio Delgado', 'Masculino', '1990-12-03', 'Doctorado', 'DEAJ780923HT2', 'DEAJ780923HGRLNS05', 'jose.delgado@instituto.edu'),
+('Mariana Solís Vega', 'Femenino', '1991-02-10', 'Doctorado', 'SOVM900204AB3', 'SOVM900204MPLSGR08', 'm.solis.vega@colegio.mx'),
+('Ricardo Alberto Núñez', 'Masculino', '1987-07-22', 'Maestría', 'NUAR821117ZX4', 'NUAR821117HCMNRC06', 'r.nunez@universidad.edu'),
+('Karla Daniela Méndez', 'Femenino', '1980-12-09', 'Licenciatura', 'MEDK870730QP5', 'MEDK870730MMNDLR09', 'karla.mendez@prepa.mx');
 
 INSERT INTO Departamentos(depa, correo, tel, Coordi_id)
 VALUES
-('Ciberseguridad', 'ciberseguridad@institucion.mx', '5512345678', 1),
-('Inteligencia Artificial y Ciencia de Datos', 'ia.datos@institucion.mx', '5556789123', 2),
-('Tecnologías Biomédicas', 'biomedicas@institucion.mx', '5523456789', 3),
-('Inteligencia Financiera y de Negocios', 'finanzas.inteligentes@institucion.mx', '5567890123', 4),
-('Innovación Digital y Analítica', 'innovacion.digital@institucion.mx', '5534567890', 5);
+('Ciberseguridad', 'ciberseguridad@institucion.mx', 5512345678, 1),
+('Inteligencia Artificial y Ciencia de Datos', 'ia.datos@institucion.mx', 5556789123, 2),
+('Tecnologías Biomédicas', 'biomedicas@institucion.mx', 5523456789, 3),
+('Inteligencia Financiera y de Negocios', 'finanzas.inteligentes@institucion.mx', 5567890123, 4),
+('Innovación Digital y Analítica', 'innovacion.digital@institucion.mx', 5534567890, 5);
 
 INSERT INTO Administrativos(nombre)
 VALUES
@@ -146,7 +146,8 @@ VALUES
 ('Becas académicas', 0.00, 32000.00, 'FONDO_BECAS', 'CUENTA_ESTUDIANTES', 4),
 ('Servicios básicos', 0.00, 18500.00, 'BANCO_OPERATIVO', 'CFE_AGUA_INTERNET', 5);
 
-INSERT INTO Control_Escolar(Tramites, Cod_Estudiante, Id_finanzas, Id_Admin)
+INSERT INTO Control_escolar(Tramites, Cod_Estudiante, Id_finanza, Id_Admin)
+VALUES
 ('Constancia de estudios', 1, 1, 3),
 ('Reposición de credencial', 3, 5, 1),
 ('Certificado parcial de estudios', 5, 4, 5),
