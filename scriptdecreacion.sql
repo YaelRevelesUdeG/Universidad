@@ -12,7 +12,7 @@ CREATE TABLE Estudiantes(
     codStud	INT auto_increment primary key not NULL,
     nombre	VARCHAR(50), 
     carrera	VARCHAR(20),
-    promedio	DECIMAL(4,2),
+    promedio DECIMAL(4,2),
     genero	VARCHAR(10), 
     nacimiento	DATE
 );
@@ -98,7 +98,7 @@ CREATE TABLE Servicios_Generales(
     Servicio VARCHAR(100),
     Administrador INT,
 
-
+    
     -- Usamos la llave foranea de administradores
     CONSTRAINT AdministradorKey
     FOREIGN KEY (Administrador) 
