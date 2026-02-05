@@ -11,7 +11,7 @@ USE Universidad;
 CREATE TABLE Estudiantes(
     codStud	INT auto_increment primary key not NULL,
     nombre	VARCHAR(50), 
-    carrera	VARCHAR(20),
+    carrera	VARCHAR(100),
     promedio DECIMAL(4,2),
     genero	VARCHAR(10), 
     nacimiento	DATE
@@ -79,7 +79,7 @@ CREATE TABLE Control_escolar(
     
     -- Llave codStud de Estudiantes
     CONSTRAINT EstudianteKey
-    FOREIGN KEY (Cod_Estudiantes)
+    FOREIGN KEY (Cod_Estudiante)
     REFERENCES Estudiantes(codStud),
     -- Llave rubro finanzas
     CONSTRAINT idKey
