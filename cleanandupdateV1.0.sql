@@ -1,5 +1,15 @@
 USE Universidad;
 
+-- Convertimos lo valores de las tablas en vacios para evitar errores
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE Docentes;
+TRUNCATE TABLE Departamentos;
+TRUNCATE TABLE Administrativos;
+TRUNCATE TABLE Control_escolar;
+TRUNCATE TABLE Finanzas;
+TRUNCATE TABLE Servicios_Generales;
+SET FOREIGN_KEY_CHECKS = 1;
+
 --------------------
 --    DOCENTES    --
 --------------------
@@ -28,7 +38,7 @@ ALTER TABLE Departamentos
 ADD COLUMN coordinador varchar (30) NOT NULL,
 ADD COLUMN ubicacion varchar (50) NOT NULL,
 ADD COLUMN no_empleados int,
-RENAME COLUMN tel TO extension
+RENAME COLUMN tel TO extension,
 DROP CONSTRAINT fk_docente_coordi;
 
 ALTER TABLE Departamentos
@@ -53,7 +63,7 @@ ADD COLUMN Nombre_Tramite VARCHAR(100) NOT NULL,
 ADD COLUMN Costo DECIMAL(10, 2) NOT NULL,
 ADD COLUMN Tiempo_Resolucion TIMESTAMP NOT NULL,
 RENAME COLUMN Id_Admin TO Responsable,
-DROP CONSTRAINT idAdmkey,
+DROP CONSTRAINT idAmdkey,
 DROP CONSTRAINT idkey,
 DROP CONSTRAINT Estudiantekey,
 DROP COLUMN Cod_Estudiante;
@@ -64,7 +74,7 @@ DROP COLUMN Cod_Estudiante;
 ALTER TABLE Control_escolar
 ADD CONSTRAINT fk_administrativos_nombre
 FOREIGN KEY (Responsable)
-REFERENCES Administrativos(idDep)
+REFERENCES Administrativos(idAdm)
 ON DELETE CASCADE;
 
 ----------------------
@@ -78,7 +88,7 @@ RENAME COLUMN id TO Id_Tramite,
 RENAME COLUMN Egreso TO Ingreso_Egreso,
 ADD COLUMN Concepto VARCHAR(100) NOT NULL,
 ADD COLUMN Fecha TIMESTAMP NOT NULL,
-ADD COLUMN Monto DECIMAL(10, 2 NOT NULL),
+ADD COLUMN Monto DECIMAL(10, 2) NOT NULL,
 DROP COLUMN Ingreso;
 
 -- Nos deshacemos de la constraint dedicada a dar la llave
@@ -96,7 +106,7 @@ DROP COLUMN Administrador;
 -- y renombramos un par existente
 ALTER TABLE Servicios_Generales
 RENAME COLUMN idServ TO id,
-RENAME COLUMN Servicios TO Nombre_Actividad,
+RENAME COLUMN Servicio TO Nombre_Actividad,
 ADD COLUMN Area VARCHAR (50) NOT NULL,
 ADD COLUMN Turno_Encargado VARCHAR (15) NOT NULL;
 
@@ -105,3 +115,9 @@ ADD COLUMN Turno_Encargado VARCHAR (15) NOT NULL;
 ALTER TABLE Servicios_Generales
 DROP CONSTRAINT AdministradorKey,
 RENAME COLUMN Administrador TO Encargado;
+
+-- Volver a conectar Encargado con Administrativos
+ALTER TABLE Servicios_Generales
+ADD CONSTRAINT fk_servicios_encargado
+FOREIGN KEY (Encargado)
+REFERENCES Administrativos(idAdm);
